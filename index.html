@@ -1,52 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Fire Bypass Panel</title>
     <style>
         body { font-family: Arial, sans-serif; }
-        .feature { margin: 10px 0; }
+        .panel { padding: 20px; border: 1px solid #ccc; margin: 10px; }
+        .toggle { margin: 10px 0; }
+        .submenu { margin-left: 20px; }
     </style>
 </head>
 <body>
     <h1>Free Fire Bypass Panel</h1>
-    <div class="status">
-        <h2>Status</h2>
-        <p id="status">Disconnected</p>
-        <p>Uptime: <span id="uptime">0</span> seconds</p>
-        <p>Cache Percentage: <span id="cache">0</span>%</p>
-    </div>
-    <div class="features">
+    <div class="panel">
         <h2>Features</h2>
-        <div class="feature">
-            <input type="checkbox" id="aimbot">
-            <label for="aimbot">AIMBOT</label>
+        <div class="toggle">
+            <label><input type="checkbox" id="aimbotToggle"> AIMBOT (LOCK-ON)</label>
         </div>
-        <div class="feature">
-            <input type="checkbox" id="noRecoil">
-            <label for="noRecoil">NO RECOIL</label>
+        <div class="submenu">
+            <strong>HS PESCOÇO (CUSTOM):</strong>
+            <div class="toggle">
+                <label><input type="checkbox" id="cabecaToggle"> CABEÇA</label>
+            </div>
+            <div class="toggle">
+                <label><input type="checkbox" id="ombroToggle"> OMBRO</label>
+            </div>
+            <div class="toggle">
+                <label><input type="checkbox" id="pecocoToggle"> PESCOÇO</label>
+            </div>
         </div>
-        <div class="feature">
-            <input type="checkbox" id="magicBullet">
-            <label for="magicBullet">MAGIC BULLET</label>
+        <div class="toggle">
+            <label><input type="checkbox" id="noRecoilToggle"> NO RECOIL (STABLE)</label>
         </div>
-        <div class="feature">
-            <input type="checkbox" id="headShot">
-            <label for="headShot">HEAD SHOT</label>
+    </div>
+    <div class="panel">
+        <h2>Status</h2>
+        <div>
+            Connection Status: <span id="connectionStatus">Connected</span>
         </div>
-        <button onclick="toggleFeatures()">Toggle Features</button>
+        <div>
+            Uptime Counter: <span id="uptimeCounter">0 hours</span>
+        </div>
+        <div>
+            Cache Percentage: <span id="cachePercentage">100%</span>
+        </div>
+        <div>
+            Terminal Logs:<br />
+            <textarea id="terminalLogs" rows="10" cols="50"></textarea>
+        </div>
     </div>
     <script>
-        function updateStatus() {
-            // Logic to update connection status and features
-            document.getElementById('status').innerText = 'Connected';
-            // Update uptime and cache
-        }
-        function toggleFeatures() {
-            // Logic to toggle features based on checkbox status
-        }
-        setInterval(updateStatus, 1000);
+        // JavaScript for handling toggles and real-time updates
     </script>
 </body>
 </html>
