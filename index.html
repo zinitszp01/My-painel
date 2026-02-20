@@ -1,54 +1,409 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <title>Free Fire Bypass Panel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ULTRA BYPASS - FF EXCLUSIVE</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .panel { padding: 20px; border: 1px solid #ccc; margin: 10px; }
-        .toggle { margin: 10px 0; }
-        .submenu { margin-left: 20px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { 
+            --main: #ff00ff; 
+            --sec: #00ffff; 
+            --bg: #020202;
+            --success: #00ff00;
+            --error: #ff3333;
+        }
+        body { 
+            background: var(--bg); 
+            color: #fff; 
+            font-family: 'Courier New', Courier, monospace; 
+            padding: 10px;
+            overflow-x: hidden;
+        }
+        .main-container { max-width: 600px; margin: 0 auto; }
+        .panel { 
+            border: 2px solid var(--main); 
+            border-radius: 10px; 
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.3); 
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .banner { 
+            background: linear-gradient(90deg, var(--main), var(--sec)); 
+            color: #000; 
+            padding: 15px; 
+            font-weight: bold; 
+            font-size: 18px; 
+            text-shadow: 1px 1px 2px #fff;
+            text-align: center;
+        }
+        .status-area { 
+            background: #111; 
+            padding: 15px; 
+            border-bottom: 1px solid #333; 
+            font-size: 12px;
+        }
+        .status-line {
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .status-label { color: #888; }
+        .status-value { color: var(--sec); font-weight: bold; }
+        .status-value.active { color: var(--success); }
+        .status-value.error { color: var(--error); }
+        .functions { padding: 15px; }
+        .btn { 
+            background: #111; 
+            border: 1px solid var(--sec); 
+            color: var(--sec); 
+            padding: 12px; 
+            width: 100%; 
+            margin: 5px 0; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+        }
+        .btn:hover { 
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+        .btn:active { 
+            background: var(--sec); 
+            color: #000;
+        }
+        .btn.active {
+            background: rgba(0, 255, 0, 0.2);
+            border-color: var(--success);
+            color: var(--success);
+        }
+        .btn-status { 
+            font-size: 10px; 
+            color: var(--error);
+            min-width: 50px;
+            text-align: right;
+        }
+        .btn.active .btn-status {
+            color: var(--success);
+        }
+        .hs-box { 
+            display: none; 
+            margin-top: 10px; 
+            border-left: 2px solid var(--main); 
+            padding-left: 10px;
+            animation: slideDown 0.3s ease;
+        }
+        .hs-box.visible { display: block; }
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 500px; }
+        }
+        .hs-btn {
+            background: #0a0a0a !important;
+            border-left: 3px solid var(--main) !important;
+        }
+        .hs-btn.active { border-left-color: var(--success) !important; }
+        #terminal { 
+            height: 120px; 
+            background: #000; 
+            font-size: 10px; 
+            padding: 10px; 
+            overflow-y: auto; 
+            color: #0f0; 
+            border: 1px solid #222; 
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+        .term-line {
+            margin: 2px 0;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+        }
+        .term-success { color: #00ff00; }
+        .term-error { color: #ff3333; }
+        .term-info { color: #00ffff; }
+        .term-warn { color: #ffff00; }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #1a1a1a;
+            border-radius: 4px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--main), var(--sec));
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .info-box {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid var(--sec);
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-size: 11px;
+            color: var(--sec);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111; }
+        ::-webkit-scrollbar-thumb { background: var(--main); border-radius: 4px; }
     </style>
 </head>
 <body>
-    <h1>Free Fire Bypass Panel</h1>
+
+<div class="main-container">
     <div class="panel">
-        <h2>Features</h2>
-        <div class="toggle">
-            <label><input type="checkbox" id="aimbotToggle"> AIMBOT (LOCK-ON)</label>
+        <div class="banner">🔥 SIELZADA BYPASS MOD V26 🔥</div>
+        <div class="status-area">
+            <div class="status-line">
+                <span class="status-label">STATUS:</span>
+                <span class="status-value" id="st">🔴 DESCONECTADO</span>
+            </div>
+            <div class="status-line">
+                <span class="status-label">DEVICE:</span>
+                <span class="status-value">iPhone 12 (iOS 26.2.1)</span>
+            </div>
+            <div class="status-line">
+                <span class="status-label">UPTIME:</span>
+                <span class="status-value" id="uptime">00:00:00</span>
+            </div>
+            <div class="status-line">
+                <span class="status-label">CACHE:</span>
+                <span class="status-value" id="cache">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
         </div>
-        <div class="submenu">
-            <strong>HS PESCOÇO (CUSTOM):</strong>
-            <div class="toggle">
-                <label><input type="checkbox" id="cabecaToggle"> CABEÇA</label>
+
+        <div class="functions">
+            <div class="info-box">
+                ℹ️ Clique em "CONECTAR" para iniciar. Use os botões abaixo para ativar features.
             </div>
-            <div class="toggle">
-                <label><input type="checkbox" id="ombroToggle"> OMBRO</label>
+
+            <button class="btn" id="connectBtn" onclick="toggleConnection()">
+                <span>🔌 CONECTAR</span>
+                <span class="btn-status">[OFF]</span>
+            </button>
+
+            <button class="btn" onclick="toggleAimbot()">
+                <span>🎯 AIMBOT (LOCK-ON)</span>
+                <span class="btn-status" id="aimbot-status">[OFF]</span>
+            </button>
+
+            <button class="btn" onclick="toggleRecoil()">
+                <span>⚡ NO RECOIL (STABLE)</span>
+                <span class="btn-status" id="recoil-status">[OFF]</span>
+            </button>
+
+            <button class="btn" onclick="toggleHSMenu()">
+                <span>💀 HS PESCOÇO (CUSTOM)</span>
+                <span style="font-size: 12px;">▼</span>
+            </button>
+            
+            <div id="hs-box" class="hs-box">
+                <button class="btn hs-btn" style="color: #ff3333; border-color: #ff3333;" onclick="toggleHS('head')">
+                    <span>✓ FOCUS: CABEÇA</span>
+                    <span class="btn-status" id="head-status">[OFF]</span>
+                </button>
+                <button class="btn hs-btn" style="color: #33ff33; border-color: #33ff33;" onclick="toggleHS('shoulder')">
+                    <span>✓ FOCUS: OMBRO</span>
+                    <span class="btn-status" id="shoulder-status">[OFF]</span>
+                </button>
+                <button class="btn hs-btn" style="color: #3333ff; border-color: #3333ff;" onclick="toggleHS('neck')">
+                    <span>✓ FOCUS: PESCOÇO</span>
+                    <span class="btn-status" id="neck-status">[OFF]</span>
+                </button>
             </div>
-            <div class="toggle">
-                <label><input type="checkbox" id="pecocoToggle"> PESCOÇO</label>
-            </div>
-        </div>
-        <div class="toggle">
-            <label><input type="checkbox" id="noRecoilToggle"> NO RECOIL (STABLE)</label>
+
+            <div id="terminal"></div>
         </div>
     </div>
-    <div class="panel">
-        <h2>Status</h2>
-        <div>
-            Connection Status: <span id="connectionStatus">Connected</span>
-        </div>
-        <div>
-            Uptime Counter: <span id="uptimeCounter">0 hours</span>
-        </div>
-        <div>
-            Cache Percentage: <span id="cachePercentage">100%</span>
-        </div>
-        <div>
-            Terminal Logs:<br />
-            <textarea id="terminalLogs" rows="10" cols="50"></textarea>
-        </div>
-    </div>
-    <script>
-        // JavaScript for handling toggles and real-time updates
-    </script>
+</div>
+
+<script>
+    // ======================== ESTADO GLOBAL ========================
+    const STATE = {
+        connected: false,
+        uptime: 0,
+        cache: 0,
+        features: {
+            aimbot: false,
+            recoil: false,
+            head: false,
+            shoulder: false,
+            neck: false
+        }
+    };
+
+    const DOM = {
+        st: document.getElementById('st'),
+        uptime: document.getElementById('uptime'),
+        cache: document.getElementById('cache'),
+        progress: document.getElementById('progress'),
+        terminal: document.getElementById('terminal'),
+        connectBtn: document.getElementById('connectBtn'),
+        hsBox: document.getElementById('hs-box')
+    };
+
+    // ======================== FUNÇÕES DE LOG ========================
+    function addLog(message, type = 'info') {
+        const line = document.createElement('div');
+        line.className = `term-line term-${type}`;
+        const timestamp = new Date().toLocaleTimeString('pt-BR');
+        
+        let prefix = '► ';
+        if (type === 'success') prefix = '✓ ';
+        if (type === 'error') prefix = '✗ ';
+        if (type === 'warn') prefix = '⚠ ';
+        
+        line.textContent = `[${timestamp}] ${prefix}${message}`;
+        DOM.terminal.insertBefore(line, DOM.terminal.firstChild);
+        
+        // Limita a 20 linhas
+        while (DOM.terminal.children.length > 20) {
+            DOM.terminal.removeChild(DOM.terminal.lastChild);
+        }
+    }
+
+    // ======================== CONEXÃO ========================
+    function toggleConnection() {
+        STATE.connected = !STATE.connected;
+        
+        if (STATE.connected) {
+            DOM.st.textContent = '🟢 CONECTADO';
+            DOM.st.className = 'status-value active';
+            DOM.connectBtn.classList.add('active');
+            DOM.connectBtn.querySelector('.btn-status').textContent = '[ON]';
+            addLog('Conexão estabelecida com sucesso!', 'success');
+            startSimulation();
+        } else {
+            DOM.st.textContent = '🔴 DESCONECTADO';
+            DOM.st.className = 'status-value error';
+            DOM.connectBtn.classList.remove('active');
+            DOM.connectBtn.querySelector('.btn-status').textContent = '[OFF]';
+            addLog('Conexão encerrada.', 'warn');
+            STATE.uptime = 0;
+            STATE.cache = 0;
+            updateStatus();
+        }
+    }
+
+    // ======================== SIMULAÇÃO EM TEMPO REAL ========================
+    function startSimulation() {
+        const uptimeInterval = setInterval(() => {
+            if (!STATE.connected) {
+                clearInterval(uptimeInterval);
+                return;
+            }
+            STATE.uptime++;
+            updateStatus();
+        }, 1000);
+
+        const cacheInterval = setInterval(() => {
+            if (!STATE.connected) {
+                clearInterval(cacheInterval);
+                return;
+            }
+            if (STATE.cache < 100) {
+                STATE.cache += Math.random() * 5;
+                if (STATE.cache > 100) STATE.cache = 100;
+                updateStatus();
+            }
+        }, 800);
+    }
+
+    function updateStatus() {
+        const hours = Math.floor(STATE.uptime / 3600);
+        const minutes = Math.floor((STATE.uptime % 3600) / 60);
+        const seconds = STATE.uptime % 60;
+        
+        DOM.uptime.textContent = 
+            `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        
+        DOM.cache.textContent = Math.floor(STATE.cache) + '%';
+        DOM.progress.style.width = Math.floor(STATE.cache) + '%';
+    }
+
+    // ======================== FEATURES ========================
+    function toggleAimbot() {
+        if (!STATE.connected) {
+            addLog('Conecte primeiro!', 'error');
+            return;
+        }
+        STATE.features.aimbot = !STATE.features.aimbot;
+        updateFeatureUI('aimbot');
+        if (STATE.features.aimbot) {
+            addLog('AIMBOT injetado com sucesso no cache!', 'success');
+        } else {
+            addLog('AIMBOT desativado.', 'warn');
+        }
+    }
+
+    function toggleRecoil() {
+        if (!STATE.connected) {
+            addLog('Conecte primeiro!', 'error');
+            return;
+        }
+        STATE.features.recoil = !STATE.features.recoil;
+        updateFeatureUI('recoil');
+        if (STATE.features.recoil) {
+            addLog('NO RECOIL injetado com sucesso!', 'success');
+        } else {
+            addLog('NO RECOIL desativado.', 'warn');
+        }
+    }
+
+    function toggleHSMenu() {
+        if (!STATE.connected) {
+            addLog('Conecte primeiro!', 'error');
+            return;
+        }
+        DOM.hsBox.classList.toggle('visible');
+    }
+
+    function toggleHS(type) {
+        if (!STATE.connected) {
+            addLog('Conecte primeiro!', 'error');
+            return;
+        }
+        STATE.features[type] = !STATE.features[type];
+        updateFeatureUI(type);
+        
+        const names = { head: 'CABEÇA', shoulder: 'OMBRO', neck: 'PESCOÇO' };
+        if (STATE.features[type]) {
+            addLog(`HS ${names[type]} ativado com sucesso!`, 'success');
+        } else {
+            addLog(`HS ${names[type]} desativado.`, 'warn');
+        }
+    }
+
+    function updateFeatureUI(feature) {
+        const btn = document.querySelector(`[onclick*="${feature}"]`).closest('.btn');
+        const statusEl = document.getElementById(`${feature}-status`);
+        
+        if (STATE.features[feature]) {
+            btn.classList.add('active');
+            statusEl.textContent = '[ON]';
+        } else {
+            btn.classList.remove('active');
+            statusEl.textContent = '[OFF]';
+        }
+    }
+
+    // ======================== INICIALIZAÇÃO ========================
+    addLog('Sistema pronto. Clique em CONECTAR para começar.', 'info');
+    addLog('Aguardando abertura do Safari no iPhone 12...', 'warn');
+</script>
+
 </body>
 </html>
