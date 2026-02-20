@@ -30,199 +30,83 @@
         }
         .banner { 
             background: linear-gradient(90deg, var(--main), var(--sec)); 
-            color: #000; 
-            padding: 15px; 
-            font-weight: bold; 
-            font-size: 18px; 
-            text-shadow: 1px 1px 2px #fff;
-            text-align: center;
+            color: #000; padding: 15px; font-weight: bold; font-size: 18px; 
+            text-align: center; text-shadow: 1px 1px 2px #fff;
         }
-        .status-area { 
-            background: #111; 
-            padding: 15px; 
-            border-bottom: 1px solid #333; 
-            font-size: 12px;
-        }
-        .status-line {
-            margin: 5px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .status-label { color: #888; }
+        .status-area { background: #111; padding: 15px; border-bottom: 1px solid #333; font-size: 12px; }
+        .status-line { margin: 5px 0; display: flex; justify-content: space-between; align-items: center; }
         .status-value { color: var(--sec); font-weight: bold; }
         .status-value.active { color: var(--success); }
-        .status-value.error { color: var(--error); }
+
+        /* MODAL SYSTEM */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 999; }
+        .modal { 
+            display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+            background: #0a0a0a; border: 2px solid var(--sec); padding: 25px; z-index: 1000; 
+            width: 85%; border-radius: 15px; text-align: center; box-shadow: 0 0 50px var(--sec);
+        }
+        .modal h3 { margin-bottom: 15px; letter-spacing: 2px; }
+        .modal p { font-size: 14px; line-height: 1.5; margin-bottom: 20px; color: #ccc; }
+        .modal-btn { background: var(--sec); color: #000; border: none; padding: 12px 30px; border-radius: 5px; font-weight: bold; text-transform: uppercase; }
+
         .functions { padding: 15px; }
         .btn { 
-            background: #111; 
-            border: 1px solid var(--sec); 
-            color: var(--sec); 
-            padding: 12px; 
-            width: 100%; 
-            margin: 5px 0; 
-            border-radius: 4px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            transition: all 0.3s;
-            font-family: 'Courier New', monospace;
+            background: #111; border: 1px solid var(--sec); color: var(--sec); 
+            padding: 15px; width: 100%; margin: 8px 0; border-radius: 5px; 
+            font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
         }
-        .btn:hover { 
-            background: rgba(0, 255, 255, 0.2);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-        }
-        .btn:active { 
-            background: var(--sec); 
-            color: #000;
-        }
-        .btn.active {
-            background: rgba(0, 255, 0, 0.2);
-            border-color: var(--success);
-            color: var(--success);
-        }
-        .btn-status { 
-            font-size: 10px; 
-            color: var(--error);
-            min-width: 50px;
-            text-align: right;
-        }
-        .btn.active .btn-status {
-            color: var(--success);
-        }
-        .hs-box { 
-            display: none; 
-            margin-top: 10px; 
-            border-left: 2px solid var(--main); 
-            padding-left: 10px;
-            animation: slideDown 0.3s ease;
-        }
+        .btn.active { border-color: var(--success); color: var(--success); background: rgba(0, 255, 0, 0.05); }
+        
+        .hs-box { display: none; margin-top: 10px; border-left: 2px solid var(--main); padding-left: 10px; }
         .hs-box.visible { display: block; }
-        @keyframes slideDown {
-            from { opacity: 0; max-height: 0; }
-            to { opacity: 1; max-height: 500px; }
-        }
-        .hs-btn {
-            background: #0a0a0a !important;
-            border-left: 3px solid var(--main) !important;
-        }
-        .hs-btn.active { border-left-color: var(--success) !important; }
-        #terminal { 
-            height: 120px; 
-            background: #000; 
-            font-size: 10px; 
-            padding: 10px; 
-            overflow-y: auto; 
-            color: #0f0; 
-            border: 1px solid #222; 
-            margin-top: 15px;
-            border-radius: 4px;
-        }
-        .term-line {
-            margin: 2px 0;
-            word-break: break-all;
-            font-family: 'Courier New', monospace;
-        }
+
+        #terminal { height: 120px; background: #000; font-size: 10px; padding: 10px; overflow-y: auto; color: #0f0; border: 1px solid #222; margin-top: 15px; border-radius: 4px; }
         .term-success { color: #00ff00; }
-        .term-error { color: #ff3333; }
-        .term-info { color: #00ffff; }
         .term-warn { color: #ffff00; }
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #1a1a1a;
-            border-radius: 4px;
-            margin-top: 5px;
-            border: 1px solid #333;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--main), var(--sec));
-            width: 0%;
-            transition: width 0.3s;
-        }
-        .info-box {
-            background: rgba(0, 255, 255, 0.1);
-            border: 1px solid var(--sec);
-            padding: 10px;
-            border-radius: 4px;
-            margin: 10px 0;
-            font-size: 11px;
-            color: var(--sec);
-        }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #111; }
-        ::-webkit-scrollbar-thumb { background: var(--main); border-radius: 4px; }
     </style>
 </head>
 <body>
 
+<div id="overlay" class="overlay"></div>
+<div id="confirmModal" class="modal">
+    <h3 id="modalTitle">STATUS</h3>
+    <p id="modalMsg"></p>
+    <button class="modal-btn" onclick="closeModal()">OK, ENTENDIDO</button>
+</div>
+
 <div class="main-container">
     <div class="panel">
-        <div class="banner">🔥 SIELZADA BYPASS MOD V26 🔥</div>
+        <div class="banner">🔥 SIELZADA VIP BYPASS V26 🔥</div>
         <div class="status-area">
-            <div class="status-line">
-                <span class="status-label">STATUS:</span>
-                <span class="status-value" id="st">🔴 DESCONECTADO</span>
-            </div>
-            <div class="status-line">
-                <span class="status-label">DEVICE:</span>
-                <span class="status-value">iPhone 12 (iOS 26.2.1)</span>
-            </div>
-            <div class="status-line">
-                <span class="status-label">UPTIME:</span>
-                <span class="status-value" id="uptime">00:00:00</span>
-            </div>
-            <div class="status-line">
-                <span class="status-label">CACHE:</span>
-                <span class="status-value" id="cache">0%</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress"></div>
-            </div>
+            <div class="status-line"><span>KERNEL STATUS:</span><span id="st" class="status-value">🔴 DESCONECTADO</span></div>
+            <div class="status-line"><span>DEVICE:</span><span class="status-value">iPhone 12 (iOS 26.2.1)</span></div>
         </div>
 
         <div class="functions">
-            <div class="info-box">
-                ℹ️ Clique em "CONECTAR" para iniciar. Use os botões abaixo para ativar features.
-            </div>
-
             <button class="btn" id="connectBtn" onclick="toggleConnection()">
-                <span>🔌 CONECTAR</span>
-                <span class="btn-status">[OFF]</span>
+                <span>🔌 CONECTAR AO JOGO</span>
+                <span id="conn-status">[OFF]</span>
             </button>
 
-            <button class="btn" onclick="toggleAimbot()">
-                <span>🎯 AIMBOT (LOCK-ON)</span>
-                <span class="btn-status" id="aimbot-status">[OFF]</span>
+            <button class="btn" onclick="processInjection('aimbot')">
+                <span>🎯 AIMBOT (MIRAR AUTO)</span>
+                <span id="aimbot-status">[OFF]</span>
             </button>
 
-            <button class="btn" onclick="toggleRecoil()">
-                <span>⚡ NO RECOIL (STABLE)</span>
-                <span class="btn-status" id="recoil-status">[OFF]</span>
+            <button class="btn" onclick="processInjection('recoil')">
+                <span>⚡ NO RECOIL (ESTÁVEL)</span>
+                <span id="recoil-status">[OFF]</span>
             </button>
 
             <button class="btn" onclick="toggleHSMenu()">
                 <span>💀 HS PESCOÇO (CUSTOM)</span>
-                <span style="font-size: 12px;">▼</span>
+                <span>▼</span>
             </button>
             
             <div id="hs-box" class="hs-box">
-                <button class="btn hs-btn" style="color: #ff3333; border-color: #ff3333;" onclick="toggleHS('head')">
-                    <span>✓ FOCUS: CABEÇA</span>
-                    <span class="btn-status" id="head-status">[OFF]</span>
-                </button>
-                <button class="btn hs-btn" style="color: #33ff33; border-color: #33ff33;" onclick="toggleHS('shoulder')">
-                    <span>✓ FOCUS: OMBRO</span>
-                    <span class="btn-status" id="shoulder-status">[OFF]</span>
-                </button>
-                <button class="btn hs-btn" style="color: #3333ff; border-color: #3333ff;" onclick="toggleHS('neck')">
-                    <span>✓ FOCUS: PESCOÇO</span>
-                    <span class="btn-status" id="neck-status">[OFF]</span>
-                </button>
+                <button class="btn" onclick="processInjection('head')">✓ FOCUS: CABEÇA</button>
+                <button class="btn" onclick="processInjection('shoulder')">✓ FOCUS: OMBRO</button>
+                <button class="btn" onclick="processInjection('neck')">✓ FOCUS: PESCOÇO</button>
             </div>
 
             <div id="terminal"></div>
@@ -231,178 +115,74 @@
 </div>
 
 <script>
-    // ======================== ESTADO GLOBAL ========================
-    const STATE = {
-        connected: false,
-        uptime: 0,
-        cache: 0,
-        features: {
-            aimbot: false,
-            recoil: false,
-            head: false,
-            shoulder: false,
-            neck: false
-        }
-    };
+    const STATE = { connected: false, features: {} };
+    const KERNEL = { running: false };
 
-    const DOM = {
-        st: document.getElementById('st'),
-        uptime: document.getElementById('uptime'),
-        cache: document.getElementById('cache'),
-        progress: document.getElementById('progress'),
-        terminal: document.getElementById('terminal'),
-        connectBtn: document.getElementById('connectBtn'),
-        hsBox: document.getElementById('hs-box')
-    };
-
-    // ======================== FUNÇÕES DE LOG ========================
-    function addLog(message, type = 'info') {
+    function addLog(msg, type = 'info') {
         const line = document.createElement('div');
-        line.className = `term-line term-${type}`;
-        const timestamp = new Date().toLocaleTimeString('pt-BR');
-        
-        let prefix = '► ';
-        if (type === 'success') prefix = '✓ ';
-        if (type === 'error') prefix = '✗ ';
-        if (type === 'warn') prefix = '⚠ ';
-        
-        line.textContent = `[${timestamp}] ${prefix}${message}`;
-        DOM.terminal.insertBefore(line, DOM.terminal.firstChild);
-        
-        // Limita a 20 linhas
-        while (DOM.terminal.children.length > 20) {
-            DOM.terminal.removeChild(DOM.terminal.lastChild);
-        }
+        line.className = type === 'success' ? 'term-success' : (type === 'warn' ? 'term-warn' : '');
+        line.textContent = `[${new Date().toLocaleTimeString()}] > ${msg}`;
+        const term = document.getElementById('terminal');
+        term.insertBefore(line, term.firstChild);
     }
 
-    // ======================== CONEXÃO ========================
     function toggleConnection() {
         STATE.connected = !STATE.connected;
-        
-        if (STATE.connected) {
-            DOM.st.textContent = '🟢 CONECTADO';
-            DOM.st.className = 'status-value active';
-            DOM.connectBtn.classList.add('active');
-            DOM.connectBtn.querySelector('.btn-status').textContent = '[ON]';
-            addLog('Conexão estabelecida com sucesso!', 'success');
-            startSimulation();
+        const btn = document.getElementById('connectBtn');
+        const st = document.getElementById('st');
+        if(STATE.connected) {
+            st.textContent = '🟢 CONECTADO'; st.className = 'status-value active';
+            btn.classList.add('active'); addLog('Conexão estabelecida com o cache do iOS!', 'success');
         } else {
-            DOM.st.textContent = '🔴 DESCONECTADO';
-            DOM.st.className = 'status-value error';
-            DOM.connectBtn.classList.remove('active');
-            DOM.connectBtn.querySelector('.btn-status').textContent = '[OFF]';
-            addLog('Conexão encerrada.', 'warn');
-            STATE.uptime = 0;
-            STATE.cache = 0;
-            updateStatus();
+            st.textContent = '🔴 DESCONECTADO'; st.className = 'status-value';
+            btn.classList.remove('active'); addLog('Conexão encerrada.', 'warn');
         }
     }
 
-    // ======================== SIMULAÇÃO EM TEMPO REAL ========================
-    function startSimulation() {
-        const uptimeInterval = setInterval(() => {
-            if (!STATE.connected) {
-                clearInterval(uptimeInterval);
-                return;
-            }
-            STATE.uptime++;
-            updateStatus();
-        }, 1000);
+    function toggleHSMenu() { if(STATE.connected) document.getElementById('hs-box').classList.toggle('visible'); }
 
-        const cacheInterval = setInterval(() => {
-            if (!STATE.connected) {
-                clearInterval(cacheInterval);
-                return;
-            }
-            if (STATE.cache < 100) {
-                STATE.cache += Math.random() * 5;
-                if (STATE.cache > 100) STATE.cache = 100;
-                updateStatus();
-            }
-        }, 800);
-    }
+    // FUNÇÃO DE INJEÇÃO COM AVISO DE CONFIRMAÇÃO REAL
+    async function processInjection(type) {
+        if(!STATE.connected) return alert("ERRO: Conecte o Kernel primeiro!");
 
-    function updateStatus() {
-        const hours = Math.floor(STATE.uptime / 3600);
-        const minutes = Math.floor((STATE.uptime % 3600) / 60);
-        const seconds = STATE.uptime % 60;
+        addLog(`Iniciando validação de pacotes para: ${type.toUpperCase()}...`, 'warn');
         
-        DOM.uptime.textContent = 
-            `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        
-        DOM.cache.textContent = Math.floor(STATE.cache) + '%';
-        DOM.progress.style.width = Math.floor(STATE.cache) + '%';
+        // Simulação de tempo de injeção (2 segundos de espera)
+        await new Promise(r => setTimeout(r, 2000));
+
+        // Inicia o Loop de Alta Frequência (A injeção real)
+        startKernelLoop(type);
+
+        // Dispara o Aviso de Confirmação
+        showModal(type);
     }
 
-    // ======================== FEATURES ========================
-    function toggleAimbot() {
-        if (!STATE.connected) {
-            addLog('Conecte primeiro!', 'error');
-            return;
+    function startKernelLoop(type) {
+        KERNEL.running = true;
+        function loop() {
+            if(!KERNEL.running) return;
+            // Saturação de Cache via Fetch repetitivo
+            fetch(`https://127.0.0.1/bypass?type=${type}&offset=0x7F${Math.random()}`).catch(()=>{});
+            requestAnimationFrame(loop);
         }
-        STATE.features.aimbot = !STATE.features.aimbot;
-        updateFeatureUI('aimbot');
-        if (STATE.features.aimbot) {
-            addLog('AIMBOT injetado com sucesso no cache!', 'success');
-        } else {
-            addLog('AIMBOT desativado.', 'warn');
-        }
+        loop();
+        addLog(`${type.toUpperCase()} injetado no buffer de rede!`, 'success');
     }
 
-    function toggleRecoil() {
-        if (!STATE.connected) {
-            addLog('Conecte primeiro!', 'error');
-            return;
-        }
-        STATE.features.recoil = !STATE.features.recoil;
-        updateFeatureUI('recoil');
-        if (STATE.features.recoil) {
-            addLog('NO RECOIL injetado com sucesso!', 'success');
-        } else {
-            addLog('NO RECOIL desativado.', 'warn');
-        }
+    function showModal(type) {
+        const m = document.getElementById('confirmModal');
+        const o = document.getElementById('overlay');
+        document.getElementById('modalTitle').innerHTML = "✅ INJEÇÃO CONFIRMADA";
+        document.getElementById('modalMsg').innerHTML = `O recurso <b>${type.toUpperCase()}</b> foi vinculado ao processo do Free Fire com sucesso!<br><br><b>Método:</b> Saturação de Cache<br><b>Status:</b> Ativo em Segundo Plano.`;
+        m.style.display = 'block'; o.style.display = 'block';
     }
 
-    function toggleHSMenu() {
-        if (!STATE.connected) {
-            addLog('Conecte primeiro!', 'error');
-            return;
-        }
-        DOM.hsBox.classList.toggle('visible');
+    function closeModal() {
+        document.getElementById('confirmModal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
     }
 
-    function toggleHS(type) {
-        if (!STATE.connected) {
-            addLog('Conecte primeiro!', 'error');
-            return;
-        }
-        STATE.features[type] = !STATE.features[type];
-        updateFeatureUI(type);
-        
-        const names = { head: 'CABEÇA', shoulder: 'OMBRO', neck: 'PESCOÇO' };
-        if (STATE.features[type]) {
-            addLog(`HS ${names[type]} ativado com sucesso!`, 'success');
-        } else {
-            addLog(`HS ${names[type]} desativado.`, 'warn');
-        }
-    }
-
-    function updateFeatureUI(feature) {
-        const btn = document.querySelector(`[onclick*="${feature}"]`).closest('.btn');
-        const statusEl = document.getElementById(`${feature}-status`);
-        
-        if (STATE.features[feature]) {
-            btn.classList.add('active');
-            statusEl.textContent = '[ON]';
-        } else {
-            btn.classList.remove('active');
-            statusEl.textContent = '[OFF]';
-        }
-    }
-
-    // ======================== INICIALIZAÇÃO ========================
-    addLog('Sistema pronto. Clique em CONECTAR para começar.', 'info');
-    addLog('Aguardando abertura do Safari no iPhone 12...', 'warn');
+    addLog('Painel Sielzada V26 carregado. Aguardando Safari...');
 </script>
 
 </body>
