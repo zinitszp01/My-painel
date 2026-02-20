@@ -1,47 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Bypass Panel</title>
     <style>
-        body { background: #000; color: #0f0; font-family: monospace; text-align: center; }
-        .btn { background: #111; border: 1px solid #0f0; color: #0f0; padding: 15px; margin: 10px; width: 85%; border-radius: 5px; }
-        .btn:active { background: #0f0; color: #000; }
-        .submenu { display: none; background: #111; padding: 10px; border: 1px dashed #555; }
+        body { font-family: Arial, sans-serif; }
+        .feature { margin: 10px 0; }
     </style>
 </head>
 <body>
-    <h2>BYPASS PANEL V26</h2>
-    <p id="st">STATUS: AGUARDANDO...</p>
-
-    <button class="btn" onclick="inj('recoil')">NO RECOIL</button>
-    <button class="btn" onclick="inj('magic')">MAGIC BULLET</button>
-    <button class="btn" onclick="inj('aim')">AIMBOT</button>
-    
-    <button class="btn" onclick="show()">HS PESCOÇO ▼</button>
-    <div id="sub" class="submenu">
-        <button class="btn" onclick="inj('head')">HS CABEÇA</button>
-        <button class="btn" onclick="inj('shoulder')">HS OMBRO</button>
+    <h1>Free Fire Bypass Panel</h1>
+    <div class="status">
+        <h2>Status</h2>
+        <p id="status">Disconnected</p>
+        <p>Uptime: <span id="uptime">0</span> seconds</p>
+        <p>Cache Percentage: <span id="cache">0</span>%</p>
     </div>
-
+    <div class="features">
+        <h2>Features</h2>
+        <div class="feature">
+            <input type="checkbox" id="aimbot">
+            <label for="aimbot">AIMBOT</label>
+        </div>
+        <div class="feature">
+            <input type="checkbox" id="noRecoil">
+            <label for="noRecoil">NO RECOIL</label>
+        </div>
+        <div class="feature">
+            <input type="checkbox" id="magicBullet">
+            <label for="magicBullet">MAGIC BULLET</label>
+        </div>
+        <div class="feature">
+            <input type="checkbox" id="headShot">
+            <label for="headShot">HEAD SHOT</label>
+        </div>
+        <button onclick="toggleFeatures()">Toggle Features</button>
+    </div>
     <script>
-        function show() {
-            let s = document.getElementById('sub');
-            s.style.display = (s.style.display === 'block') ? 'none' : 'block';
+        function updateStatus() {
+            // Logic to update connection status and features
+            document.getElementById('status').innerText = 'Connected';
+            // Update uptime and cache
         }
-
-        async function inj(type) {
-            document.getElementById('st').innerText = "INJETANDO " + type.toUpperCase() + "...";
-            
-            // Tenta forçar o cache do navegador para o jogo ler os offsets
-            const res = await fetch('config.json');
-            const data = await res.json();
-            
-            for(let i=0; i<30; i++) {
-                fetch('https://127.0.0.1/inject?val=' + data.hs_offset_y).catch(()=>{});
-            }
-            
-            setTimeout(() => { document.getElementById('st').innerText = type.toUpperCase() + " ATIVO NO CACHE"; }, 800);
+        function toggleFeatures() {
+            // Logic to toggle features based on checkbox status
         }
+        setInterval(updateStatus, 1000);
     </script>
 </body>
 </html>
